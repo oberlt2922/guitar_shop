@@ -62,14 +62,14 @@ function get_product_order_count($product_id) {
 }
 
 function add_product($category_id, $code, $name, $description,
-        $price, $discount_percent) {
+        $price, $discount_percent, $inventory) {
     global $db;
     $query = 'INSERT INTO products
                  (categoryID, productCode, productName, description, listPrice,
-                  discountPercent, dateAdded)
+                  discountPercent, dateAdded, inventory)
               VALUES
                  (:category_id, :code, :name, :description, :price,
-                  :discount_percent, NOW())';
+                  :discount_percent, NOW(), :inventory)';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':category_id', $category_id);
@@ -78,6 +78,7 @@ function add_product($category_id, $code, $name, $description,
         $statement->bindValue(':description', $description);
         $statement->bindValue(':price', $price);
         $statement->bindValue(':discount_percent', $discount_percent);
+        $statement->bindvalue(':inventory', $inventory);
         $statement->execute();
         $statement->closeCursor();
 
