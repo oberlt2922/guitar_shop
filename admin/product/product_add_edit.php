@@ -57,6 +57,11 @@
         <input type="text" name="discount_percent" 
                value="<?php echo $product['discountPercent']; ?>">
         <br>
+        
+        <label>Inventory:</label>
+        <input type="text" name="inventory" 
+               value="<?php echo $product['inventory']; ?>">
+        <br>
 
         <label>Description:</label>
         <textarea name="description" rows="10"
